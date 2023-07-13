@@ -23,9 +23,9 @@ default: &default
 
 development:
   <<: *default
-  database: recipeappdb
+  database: Recipe_development
   username: postgres
-  password: HenryDB
+  password: lenguchally12
 
 
   # The specified database role being used to connect to postgres.
@@ -35,7 +35,7 @@ development:
   username: postgres
 
   # The password associated with the postgres role (username).
-  password: HenryDB
+  password: lenguchally12
 
   # Connect on a TCP socket. Omitted by default since the client uses a
   # domain socket that doesn't need configuration. Windows does not have
@@ -44,7 +44,7 @@ development:
 
   # The TCP port the server listens on. Defaults to 5432.
   # If your server runs on a different port number, change accordingly.
-  #port: 5432
+  port: 5432
 
   # Schema search path. The server defaults to $user,public
   #schema_search_path: myapp,sharedapp,public
@@ -58,11 +58,11 @@ development:
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
-test:
-  <<: *default
-  database: recipeappdb
-  username: postgres
-  password: HenryDB
+# test:
+#   <<: *default
+#   database: Recipe_test
+#   username: postgres
+#   password: HenryDB
 
 # As with config/credentials.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -84,8 +84,8 @@ test:
 # Read https://guides.rubyonrails.org/configuring.html#configuring-a-database
 # for a full overview on how database connection configuration can be specified.
 #
-production:
-  <<: *default
-  database: recipeappdb
-  username: postgres
-  password: HenryDB
+# production:
+#   <<: *default
+#   database: recipeappdb
+#   username: postgres
+#   password: HenryDB
