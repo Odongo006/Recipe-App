@@ -1,17 +1,13 @@
 Rails.application.routes.draw do
-  # devise_for :users
-  
-  resources :recipes, except: [:edit] do
-  resources :recipe_foods, only: [:new, :create, :destroy, :edit, :update]
-  end
-  
-  resources :foods
+  devise_for :users
+  # root 'foods#index'
+
   resources :users
-  
-  # Add the route for the edit action
-  get 'recipes/:id/edit', to: 'recipes#edit', as: 'edit_recipe'
-  get '/general_shopping_list' , to: 'users#shopping_list'
-  get 'recipes/:recipe_id/new_ingredient' , to: 'recipes#new_ingredient' , as: :new_ingredient
-  post 'recipes/:recipe_id/new_ingredient' , to: 'recipes#create_ingredient' , as: :create_ingredient
-  root "foods#index"
+  resources :foods, only: %i[index new create destroy]
+  resources :recipes, only: %i[index show new create destroy] do
+    resources :recipe_foods
+  end
+
+  resources :public_recipes, only: [:index]
+  resources :general_shopping_list, only: [:index]
 end
