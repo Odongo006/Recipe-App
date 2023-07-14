@@ -6,17 +6,21 @@ class RecipesController < ApplicationController
     @recipes = Recipe.all
   end
 
+  # GET /recipes/1 or /recipes/1.json
   def show
     @recipe = Recipe.includes(:recipe_foods).find(params[:id])
     @ingredients = @recipe.recipe_foods.where(recipe: @recipe)
   end
 
+  # GET /recipes/new
   def new
     @recipe = Recipe.new
   end
 
+  # GET /recipes/1/edit
   def edit; end
 
+  # POST /recipes or /recipes.json
   def create
     @recipe = Recipe.new(recipe_params)
     @recipe.user = current_user
@@ -68,8 +72,7 @@ class RecipesController < ApplicationController
 
     puts @food.inspect
     if @food.save
-      @recipe_food = @food.recipe_foods.build(recipe: @recipe,
-                                              quantity: food_params[:recipe_foods_attributes]['0'][:quantity])
+      @recipe_food = @food.recipe_foods.build(recipe: @recipe, quantity: food_params[:recipe_foods_attributes]['0'][:quantity])
 
       if @recipe_food.save
         redirect_to recipe_path(@recipe), notice: 'Your Recipe is created successfully'
@@ -98,6 +101,6 @@ class RecipesController < ApplicationController
   end
 
   def food_params
-    params.require(:food).permit(:name, :measurement_unit, :price, :quantity, recipe_foods_attributes: [:quantity])
+    params.require(:food).permit(:name, :measurement, :price, :quantity, recipe_foods_attributes: [:quantity])
   end
 end
