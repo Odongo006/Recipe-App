@@ -60,7 +60,7 @@ development:
 # Do not set this db to the same as development or production.
 # test:
 #   <<: *default
-#   database: Recipe_test
+#   database: recipeappdb
 #   username: postgres
 #   password: HenryDB
 
@@ -83,7 +83,7 @@ development:
 #
 # Read https://guides.rubyonrails.org/configuring.html#configuring-a-database
 # for a full overview on how database connection configuration can be specified.
-#
+# #
 # production:
 #   <<: *default
 #   database: recipeappdb
