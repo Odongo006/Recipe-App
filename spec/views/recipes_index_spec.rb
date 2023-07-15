@@ -11,6 +11,10 @@ RSpec.describe 'Recipe index', type: :feature do
     expect(page).to have_content('Recipes')
   end
 
+  it 'displays recipe cards for each recipe' do
+    expect(page).to have_selector('.recipe_card', count: Recipe.count)
+  end
+
   it 'displays the recipe name and description' do
     Recipe.all.each do |recipe|
       expect(page).to have_content(recipe.name)
