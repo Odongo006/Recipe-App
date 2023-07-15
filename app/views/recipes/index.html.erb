@@ -1,14 +1,26 @@
-<div>
-  <h2 id='recipes-h2'>Recipes</h2>
-  <% @recipes.each_with_index do |recipe, index| %>
-    <div class = 'recipe'>
-      <div class='recipe-name'>
-          <h2><%= link_to recipe.name, recipe_path(recipe) %></h2>
-          <% if can? :destroy, recipe %>
-            <%= button_to 'Delete', recipe_path(recipe), method: :delete, data: { confirm: 'Are you sure?' } %>
-          <% end %>
-      </div>
-      <p><%=recipe.description %></p>
-    </div>
-  <% end %>
-</div>
+<section>
+  <div class="new_recipe_action">
+    <%= link_to "Add Recipe", new_recipe_path, class:'add-btn' %>
+  </div>
+  <h2 class="section_title">Recipes</h2>
+  <ul class="recipe_items">
+     <% if @recipes.empty? %>
+        <p class="no_item">OOPs No Recipe Found !!!</p>
+    <% end %>
+    <% @recipes.each do |recipe| %>
+      <li class="recipe_card">  
+        <div class="recipe_head">
+          <a href=<%= "/recipes/#{recipe.id}" %>>
+            <h3><%= recipe.name %></h3>
+          </a>
+          <div class="head_action">
+          <%= button_to "Delete", recipe, method: :delete, class:'btn-delete-recipe' %>
+          </div>
+        </div>
+        <div class="text-description">
+            <p class="text-description"><%= recipe.description %></p>
+        </div>
+      </li>
+    <% end %>
+  </ul>
+</section>
