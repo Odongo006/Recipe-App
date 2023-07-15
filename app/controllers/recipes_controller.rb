@@ -72,7 +72,8 @@ class RecipesController < ApplicationController
 
     puts @food.inspect
     if @food.save
-      @recipe_food = @food.recipe_foods.build(recipe: @recipe, quantity: food_params[:recipe_foods_attributes]['0'][:quantity])
+      @recipe_food = @food.recipe_foods.build(recipe: @recipe,
+                                              quantity: food_params[:recipe_foods_attributes]['0'][:quantity])
 
       if @recipe_food.save
         redirect_to recipe_path(@recipe), notice: 'Your Recipe is created successfully'
