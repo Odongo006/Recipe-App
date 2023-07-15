@@ -1,6 +1,8 @@
 require 'rails_helper'
 RSpec.feature 'Foods index', type: :feature do
-  let!(:user) { User.create(name: 'lengushuru', email: 'example@example.com', password: 'password', confirmed_at: Time.current) }
+  let!(:user) do
+    User.create(name: 'lengushuru', email: 'example@example.com', password: 'password', confirmed_at: Time.current)
+  end
   before do
     ActionMailer::Base.deliveries.clear
     sign_in user

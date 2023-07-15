@@ -1,7 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe 'Public Recipes Index Page', type: :feature do
-  let!(:user) { User.create(name: 'charles', email: 'charles@example.com', password: 'password', confirmed_at: Time.current) }
+  let!(:user) do
+    User.create(name: 'charles', email: 'charles@example.com', password: 'password', confirmed_at: Time.current)
+  end
   let!(:recipes) do
     [
       Recipe.create(name: 'choma', description: 'This is recipe 1', user:, public: true),
